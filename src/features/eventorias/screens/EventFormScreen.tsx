@@ -73,7 +73,7 @@ export function EventFormScreen({
       date: values.date,
       time: values.time || "19:00",
       neighborhood: neighborhoodFrom(values.address),
-      venue: editing?.venue ?? values.address.split(",")[0].trim(),
+      venue: editing?.venue ?? (values.address.split(",")[0] ?? values.address).trim(),
       address: values.address.trim(),
       language: values.language,
       price: Number.isFinite(price) && price > 0 ? price : 0,

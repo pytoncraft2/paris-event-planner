@@ -27,8 +27,8 @@ export type EventItem = {
   description: string;
   organizer: string;
   organizerRole: string;
-  image?: string;
-  publishedByMe?: boolean;
+  image?: string | undefined;
+  publishedByMe?: boolean | undefined;
 };
 
 export type Filters = {

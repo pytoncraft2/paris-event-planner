@@ -5,8 +5,8 @@ type FormFieldProps = {
   id: string;
   label: string;
   required?: boolean;
-  error?: string;
-  hint?: string;
+  error?: string | undefined;
+  hint?: string | undefined;
   children: (props: { id: string; invalid: boolean; className: string }) => ReactNode;
 };
 
