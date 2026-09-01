@@ -2,29 +2,17 @@ import { ChevronRight, UserRound } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { ScreenBody, ScreenHeader } from "../components/Shell";
 import { PROFILE } from "../data";
-import type { DemoMode } from "./EventsScreen";
-
-const DEMO_MODES: { id: DemoMode; label: string }[] = [
-  { id: "normal", label: "Normal" },
-  { id: "loading", label: "Loading" },
-  { id: "empty", label: "Empty" },
-  { id: "error", label: "Error" },
-];
 
 export function ProfileScreen({
   notifications,
   onNotificationsChange,
   onOpenMyEvents,
   myEventsCount,
-  demoMode,
-  onDemoModeChange,
 }: {
   notifications: boolean;
   onNotificationsChange: (v: boolean) => void;
   onOpenMyEvents: () => void;
   myEventsCount: number;
-  demoMode: DemoMode;
-  onDemoModeChange: (m: DemoMode) => void;
 }) {
   return (
     <>
@@ -72,30 +60,6 @@ export function ProfileScreen({
           </button>
         </div>
 
-        <section className="mt-7">
-          <h2 className="text-sm font-semibold text-foreground">Demo states</h2>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Preview how the Events screen behaves in each state.
-          </p>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            {DEMO_MODES.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => onDemoModeChange(m.id)}
-                aria-pressed={demoMode === m.id}
-                className={
-                  "h-11 rounded-xl border text-sm font-medium transition-colors " +
-                  (demoMode === m.id
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card text-muted-foreground")
-                }
-              >
-                {m.label}
-              </button>
-            ))}
-          </div>
-        </section>
       </ScreenBody>
     </>
   );
