@@ -57,13 +57,13 @@ function matches(event: EventItem, filters: Filters, query: string, chip: Catego
   return true;
 }
 
-export function EventoriasApp() {
+export function EventoriasApp({ initialDemoMode = "normal" }: { initialDemoMode?: DemoMode } = {}) {
   const [screen, setScreen] = useState<Screen>({ name: "events" });
   const [tab, setTab] = useState<Tab>("events");
   const [query, setQuery] = useState("");
   const [chip, setChip] = useState<Category | "All">("All");
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
-  const [demoMode, setDemoMode] = useState<DemoMode>("normal");
+  const [demoMode, setDemoMode] = useState<DemoMode>(initialDemoMode);
   const [notifications, setNotifications] = useState(true);
   const [signedIn, setSignedIn] = useState(false);
   const [myEvents, setMyEvents] = useState<EventItem[]>(ORGANIZER_SEED_EVENTS);
@@ -155,8 +155,6 @@ export function EventoriasApp() {
           onNotificationsChange={setNotifications}
           onOpenMyEvents={() => setScreen({ name: "myEvents" })}
           myEventsCount={myEvents.length}
-          demoMode={demoMode}
-          onDemoModeChange={setDemoMode}
         />
       )}
 
