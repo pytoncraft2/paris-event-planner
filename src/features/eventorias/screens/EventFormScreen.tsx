@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FormField } from "../components/FormField";
@@ -49,6 +49,25 @@ export function EventFormScreen({
   const isEdit = editing !== null;
   const [values, setValues] = useState<FormValues>(() => toValues(editing));
   const [errors, setErrors] = useState<Errors>({});
+  const [imagePreview, setImagePreview] = useState<string | undefined>(editing?.image);
+  const objectUrlRef = useRef<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(
+    () => () => {
+      if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
+    },
+    [],
+  );
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
+    const url = URL.createObjectURL(file);
+    objectUrlRef.current = url;
+    setImagePreview(url);
+  };
 
   const set = <K extends keyof FormValues>(key: K, value: FormValues[K]) => {
     setValues((v) => ({ ...v, [key]: value }));
@@ -62,7 +81,13 @@ export function EventFormScreen({
     if (!values.date.trim()) next.date = "Date is required";
     if (!values.address.trim()) next.address = "Address is required";
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    const firstInvalid = (["title", "date", "address"] as const).find((k) => next[k]);
+    if (firstInvalid) {
+      const el = document.getElementById(firstInvalid);
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      el?.focus({ preventScroll: true });
+      return;
+    }
 
     const price = Number.parseFloat(values.price.replace(",", "."));
     onSubmit({
@@ -80,7 +105,7 @@ export function EventFormScreen({
       description: values.description.trim() || "No description provided yet.",
       organizer: PROFILE.name,
       organizerRole: "Organizer",
-      image: editing?.image,
+      image: imagePreview,
       publishedByMe: true,
     });
   };
@@ -186,11 +211,42 @@ export function EventFormScreen({
           </FormField>
 
           <div>
-            <p className="mb-1.5 text-sm font-medium text-foreground">Image</p>
-            <div className="flex aspect-[16/9] w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-card text-muted-foreground">
-              <ImageIcon className="size-6" aria-hidden />
-              <span className="text-sm">Image upload coming soon</span>
-            </div>
+            <p className="mb-1.5 text-sm font-medium text-foreground">Event image</p>
+            <input
+              ref={fileInputRef}
+              id="image"
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif,image/*"
+              className="sr-only"
+              onChange={handleImageChange}
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex aspect-[16/9] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-xl border border-dashed border-border bg-card text-muted-foreground hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            >
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="Selected event image preview"
+                  className="size-full object-cover"
+                />
+              ) : (
+                <>
+                  <ImageIcon className="size-6" aria-hidden />
+                  <span className="text-sm">Choose an image</span>
+                </>
+              )}
+            </button>
+            {imagePreview ? (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="mt-2 min-h-11 text-sm font-medium text-primary"
+              >
+                Replace image
+              </button>
+            ) : null}
           </div>
         </ScreenBody>
 
