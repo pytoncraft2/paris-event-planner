@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FiltersRouteImport } from './routes/filters'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as CalendarSuccessRouteImport } from './routes/calendar.success'
 import { Route as EventsIndexRouteImport } from './routes/events.index'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const FiltersRoute = FiltersRouteImport.update({
   id: '/filters',
   path: '/filters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SigninRoute = SigninRouteImport.update({
@@ -56,6 +62,7 @@ const EventsResultsRoute = EventsResultsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
   '/signin': typeof SigninRoute
   '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
   '/signin': typeof SigninRoute
   '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
   '/signin': typeof SigninRoute
   '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/filters'
+    | '/profile'
     | '/signin'
     | '/calendar/success'
     | '/events/$eventId'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/filters'
+    | '/profile'
     | '/signin'
     | '/calendar/success'
     | '/events/$eventId'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/filters'
+    | '/profile'
     | '/signin'
     | '/calendar/success'
     | '/events/$eventId'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FiltersRoute: typeof FiltersRoute
+  ProfileRoute: typeof ProfileRoute
   SigninRoute: typeof SigninRoute
   CalendarSuccessRoute: typeof CalendarSuccessRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/filters'
       fullPath: '/filters'
       preLoaderRoute: typeof FiltersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signin': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FiltersRoute: FiltersRoute,
+  ProfileRoute: ProfileRoute,
   SigninRoute: SigninRoute,
   CalendarSuccessRoute: CalendarSuccessRoute,
   EventsEventIdRoute: EventsEventIdRoute,
