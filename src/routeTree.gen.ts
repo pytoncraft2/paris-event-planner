@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FiltersRouteImport } from './routes/filters'
 import { Route as SigninRouteImport } from './routes/signin'
+import { Route as CalendarSuccessRouteImport } from './routes/calendar.success'
 import { Route as EventsIndexRouteImport } from './routes/events.index'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as EventsResultsRouteImport } from './routes/events.results'
@@ -29,6 +30,11 @@ const FiltersRoute = FiltersRouteImport.update({
 const SigninRoute = SigninRouteImport.update({
   id: '/signin',
   path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarSuccessRoute = CalendarSuccessRouteImport.update({
+  id: '/calendar/success',
+  path: '/calendar/success',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsIndexRoute = EventsIndexRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
   '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/results': typeof EventsResultsRoute
   '/events/': typeof EventsIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
   '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/results': typeof EventsResultsRoute
   '/events': typeof EventsIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/filters': typeof FiltersRoute
   '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/results': typeof EventsResultsRoute
   '/events/': typeof EventsIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/filters'
     | '/signin'
+    | '/calendar/success'
     | '/events/$eventId'
     | '/events/results'
     | '/events/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/filters'
     | '/signin'
+    | '/calendar/success'
     | '/events/$eventId'
     | '/events/results'
     | '/events'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/filters'
     | '/signin'
+    | '/calendar/success'
     | '/events/$eventId'
     | '/events/results'
     | '/events/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FiltersRoute: typeof FiltersRoute
   SigninRoute: typeof SigninRoute
+  CalendarSuccessRoute: typeof CalendarSuccessRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsResultsRoute: typeof EventsResultsRoute
   EventsIndexRoute: typeof EventsIndexRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/signin'
       fullPath: '/signin'
       preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar/success': {
+      id: '/calendar/success'
+      path: '/calendar/success'
+      fullPath: '/calendar/success'
+      preLoaderRoute: typeof CalendarSuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events/': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FiltersRoute: FiltersRoute,
   SigninRoute: SigninRoute,
+  CalendarSuccessRoute: CalendarSuccessRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsResultsRoute: EventsResultsRoute,
   EventsIndexRoute: EventsIndexRoute,
