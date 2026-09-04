@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FiltersRouteImport } from './routes/filters'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as CalendarSuccessRouteImport } from './routes/calendar.success'
+import { Route as EventsIndexRouteImport } from './routes/events.index'
+import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
+import { Route as EventsResultsRouteImport } from './routes/events.results'
+import { Route as MyEventsIndexRouteImport } from './routes/my-events.index'
+import { Route as MyEventsCreateRouteImport } from './routes/my-events.create'
+import { Route as PublishSuccessRouteImport } from './routes/publish.success'
+import { Route as MyEventsEventIdEditRouteImport } from './routes/my-events.$eventId.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FiltersRoute = FiltersRouteImport.update({
+  id: '/filters',
+  path: '/filters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarSuccessRoute = CalendarSuccessRouteImport.update({
+  id: '/calendar/success',
+  path: '/calendar/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/events/$eventId',
+  path: '/events/$eventId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsResultsRoute = EventsResultsRouteImport.update({
+  id: '/events/results',
+  path: '/events/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyEventsIndexRoute = MyEventsIndexRouteImport.update({
+  id: '/my-events/',
+  path: '/my-events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyEventsCreateRoute = MyEventsCreateRouteImport.update({
+  id: '/my-events/create',
+  path: '/my-events/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublishSuccessRoute = PublishSuccessRouteImport.update({
+  id: '/publish/success',
+  path: '/publish/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyEventsEventIdEditRoute = MyEventsEventIdEditRouteImport.update({
+  id: '/my-events/$eventId/edit',
+  path: '/my-events/$eventId/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
+  '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/results': typeof EventsResultsRoute
+  '/my-events/create': typeof MyEventsCreateRoute
+  '/publish/success': typeof PublishSuccessRoute
+  '/events/': typeof EventsIndexRoute
+  '/my-events/': typeof MyEventsIndexRoute
+  '/my-events/$eventId/edit': typeof MyEventsEventIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
+  '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/results': typeof EventsResultsRoute
+  '/my-events/create': typeof MyEventsCreateRoute
+  '/publish/success': typeof PublishSuccessRoute
+  '/events': typeof EventsIndexRoute
+  '/my-events': typeof MyEventsIndexRoute
+  '/my-events/$eventId/edit': typeof MyEventsEventIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/filters': typeof FiltersRoute
+  '/profile': typeof ProfileRoute
+  '/signin': typeof SigninRoute
+  '/calendar/success': typeof CalendarSuccessRoute
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/results': typeof EventsResultsRoute
+  '/my-events/create': typeof MyEventsCreateRoute
+  '/publish/success': typeof PublishSuccessRoute
+  '/events/': typeof EventsIndexRoute
+  '/my-events/': typeof MyEventsIndexRoute
+  '/my-events/$eventId/edit': typeof MyEventsEventIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/filters'
+    | '/profile'
+    | '/signin'
+    | '/calendar/success'
+    | '/events/$eventId'
+    | '/events/results'
+    | '/my-events/create'
+    | '/publish/success'
+    | '/events/'
+    | '/my-events/'
+    | '/my-events/$eventId/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/filters'
+    | '/profile'
+    | '/signin'
+    | '/calendar/success'
+    | '/events/$eventId'
+    | '/events/results'
+    | '/my-events/create'
+    | '/publish/success'
+    | '/events'
+    | '/my-events'
+    | '/my-events/$eventId/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/filters'
+    | '/profile'
+    | '/signin'
+    | '/calendar/success'
+    | '/events/$eventId'
+    | '/events/results'
+    | '/my-events/create'
+    | '/publish/success'
+    | '/events/'
+    | '/my-events/'
+    | '/my-events/$eventId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FiltersRoute: typeof FiltersRoute
+  ProfileRoute: typeof ProfileRoute
+  SigninRoute: typeof SigninRoute
+  CalendarSuccessRoute: typeof CalendarSuccessRoute
+  EventsEventIdRoute: typeof EventsEventIdRoute
+  EventsResultsRoute: typeof EventsResultsRoute
+  MyEventsCreateRoute: typeof MyEventsCreateRoute
+  PublishSuccessRoute: typeof PublishSuccessRoute
+  EventsIndexRoute: typeof EventsIndexRoute
+  MyEventsIndexRoute: typeof MyEventsIndexRoute
+  MyEventsEventIdEditRoute: typeof MyEventsEventIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/filters': {
+      id: '/filters'
+      path: '/filters'
+      fullPath: '/filters'
+      preLoaderRoute: typeof FiltersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar/success': {
+      id: '/calendar/success'
+      path: '/calendar/success'
+      fullPath: '/calendar/success'
+      preLoaderRoute: typeof CalendarSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/results': {
+      id: '/events/results'
+      path: '/events/results'
+      fullPath: '/events/results'
+      preLoaderRoute: typeof EventsResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-events/': {
+      id: '/my-events/'
+      path: '/my-events'
+      fullPath: '/my-events/'
+      preLoaderRoute: typeof MyEventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-events/create': {
+      id: '/my-events/create'
+      path: '/my-events/create'
+      fullPath: '/my-events/create'
+      preLoaderRoute: typeof MyEventsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publish/success': {
+      id: '/publish/success'
+      path: '/publish/success'
+      fullPath: '/publish/success'
+      preLoaderRoute: typeof PublishSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-events/$eventId/edit': {
+      id: '/my-events/$eventId/edit'
+      path: '/my-events/$eventId/edit'
+      fullPath: '/my-events/$eventId/edit'
+      preLoaderRoute: typeof MyEventsEventIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FiltersRoute: FiltersRoute,
+  ProfileRoute: ProfileRoute,
+  SigninRoute: SigninRoute,
+  CalendarSuccessRoute: CalendarSuccessRoute,
+  EventsEventIdRoute: EventsEventIdRoute,
+  EventsResultsRoute: EventsResultsRoute,
+  MyEventsCreateRoute: MyEventsCreateRoute,
+  PublishSuccessRoute: PublishSuccessRoute,
+  EventsIndexRoute: EventsIndexRoute,
+  MyEventsIndexRoute: MyEventsIndexRoute,
+  MyEventsEventIdEditRoute: MyEventsEventIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
