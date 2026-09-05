@@ -148,13 +148,28 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+const NAV_PATHS = ["/events", "/events/results", "/profile", "/my-events"];
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const normalized = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  const showNav = NAV_PATHS.includes(normalized);
+  const activeTab: Tab =
+    normalized === "/profile" || normalized.startsWith("/my-events")
+      ? "profile"
+      : "events";
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <EventoriasProvider>
+        <MobileShell>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+          {showNav && <BottomNav active={activeTab} onChange={() => undefined} />}
+        </MobileShell>
+      </EventoriasProvider>
     </QueryClientProvider>
   );
 }
+
