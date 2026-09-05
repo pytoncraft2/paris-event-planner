@@ -210,7 +210,7 @@ export function EventFormScreen({
             )}
           </FormField>
 
-          <div>
+          <div className="relative">
             <p className="mb-1.5 text-sm font-medium text-foreground">Event image</p>
             <input
               ref={fileInputRef}
