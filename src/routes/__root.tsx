@@ -4,6 +4,8 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
+  useNavigate,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,6 +13,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BottomNav, type Tab } from "../features/eventorias/components/BottomNav";
+import { MobileShell } from "../features/eventorias/components/Shell";
+import { EventoriasProvider } from "../features/eventorias/store";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Eventorias — English-friendly events in Paris" },
+      { name: "description", content: "Discover English-friendly events in Paris and publish your own as a local organizer." },
+      { name: "author", content: "Eventorias" },
+      { property: "og:title", content: "Eventorias — English-friendly events in Paris" },
+      { property: "og:description", content: "Discover English-friendly events in Paris and publish your own as a local organizer." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -152,6 +157,7 @@ const NAV_PATHS = ["/events", "/events/results", "/profile", "/my-events"];
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const normalized = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   const showNav = NAV_PATHS.includes(normalized);
@@ -166,7 +172,7 @@ function RootComponent() {
         <MobileShell>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
-          {showNav && <BottomNav active={activeTab} onChange={() => undefined} />}
+          {showNav && <BottomNav active={activeTab} onChange={(tab) => void navigate({ to: tab === "events" ? "/events" : "/profile" })} />}
         </MobileShell>
       </EventoriasProvider>
     </QueryClientProvider>
