@@ -44,8 +44,13 @@ function SignInRoute() {
       onBack={back}
       onSignIn={() => {
         store.setSignedIn(true);
-        if (eventId) void navigate({ to: "/calendar/success", search: { event: eventId } });
-        else void navigate({ to: "/events" });
+        const event = eventId ? store.findEvent(eventId) : undefined;
+        if (event) {
+          store.setLastCalendarEvent(event);
+          void navigate({ to: "/calendar/success" });
+        } else {
+          void navigate({ to: "/events" });
+        }
       }}
       onNotNow={back}
     />

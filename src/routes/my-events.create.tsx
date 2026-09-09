@@ -29,10 +29,8 @@ function CreateEventRoute() {
       onBack={() => void navigate({ to: "/my-events" })}
       onSubmit={(event) => {
         store.upsertEvent(event);
-        void navigate({
-          to: "/publish/success",
-          search: { event: event.id, mode: "create" },
-        });
+        store.setLastPublish({ event, isEdit: false });
+        void navigate({ to: "/publish/success" });
       }}
     />
   );
