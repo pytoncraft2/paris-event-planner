@@ -31,10 +31,8 @@ function EditEventRoute() {
       onBack={() => void navigate({ to: "/my-events" })}
       onSubmit={(event) => {
         store.upsertEvent(event);
-        void navigate({
-          to: "/publish/success",
-          search: { event: event.id, mode: "edit" },
-        });
+        store.setLastPublish({ event, isEdit: true });
+        void navigate({ to: "/publish/success" });
       }}
     />
   );

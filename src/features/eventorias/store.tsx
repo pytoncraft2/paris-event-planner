@@ -54,6 +54,12 @@ type Store = {
   cancelEvent: (id: string) => void;
   resetSearch: () => void;
   resetAll: () => void;
+  /** Event most recently added to the calendar; feeds the canonical success screen. */
+  lastCalendarEvent: EventItem | null;
+  setLastCalendarEvent: (e: EventItem | null) => void;
+  /** Most recent publish/save result; feeds the canonical success screen. */
+  lastPublish: { event: EventItem; isEdit: boolean } | null;
+  setLastPublish: (v: { event: EventItem; isEdit: boolean } | null) => void;
 };
 
 const EventoriasContext = createContext<Store | null>(null);
@@ -65,6 +71,11 @@ export function EventoriasProvider({ children }: { children: ReactNode }) {
   const [signedIn, setSignedIn] = useState(false);
   const [notifications, setNotifications] = useState(true);
   const [myEvents, setMyEvents] = useState<EventItem[]>(ORGANIZER_SEED_EVENTS);
+  const [lastCalendarEvent, setLastCalendarEvent] = useState<EventItem | null>(null);
+  const [lastPublish, setLastPublish] = useState<{
+    event: EventItem;
+    isEdit: boolean;
+  } | null>(null);
 
   const allEvents = useMemo(() => [...SEED_EVENTS, ...myEvents], [myEvents]);
   const visibleEvents = useMemo(
@@ -106,7 +117,13 @@ export function EventoriasProvider({ children }: { children: ReactNode }) {
       setSignedIn(false);
       setNotifications(true);
       setMyEvents(ORGANIZER_SEED_EVENTS);
+      setLastCalendarEvent(null);
+      setLastPublish(null);
     },
+    lastCalendarEvent,
+    setLastCalendarEvent,
+    lastPublish,
+    setLastPublish,
   };
 
   return (

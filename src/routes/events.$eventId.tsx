@@ -52,7 +52,8 @@ function EventDetailsRoute() {
       onBack={() => void navigate({ to: "/events" })}
       onAddToCalendar={() => {
         if (store.signedIn) {
-          void navigate({ to: "/calendar/success", search: { event: event.id } });
+          store.setLastCalendarEvent(event);
+          void navigate({ to: "/calendar/success" });
         } else {
           void navigate({
             to: "/signin",

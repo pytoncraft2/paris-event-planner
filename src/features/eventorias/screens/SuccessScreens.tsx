@@ -16,7 +16,7 @@ export function CalendarSuccessScreen({
   onDone,
   onBackToEvents,
 }: {
-  event: EventItem;
+  event: EventItem | null;
   onDone: () => void;
   onBackToEvents: () => void;
 }) {
@@ -31,18 +31,20 @@ export function CalendarSuccessScreen({
           This event is now in your Eventorias calendar.
         </p>
 
-        <div className="mt-7 w-full rounded-xl border border-border bg-card p-4 text-left shadow-card">
-          <p className="text-base font-semibold text-foreground">{event.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {formatDate(event.date)} · {event.time}
-          </p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {event.venue}, {event.neighborhood}
-          </p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {event.language} · {formatPrice(event.price)}
-          </p>
-        </div>
+        {event ? (
+          <div className="mt-7 w-full rounded-xl border border-border bg-card p-4 text-left shadow-card">
+            <p className="text-base font-semibold text-foreground">{event.title}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {formatDate(event.date)} · {event.time}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {event.venue}, {event.neighborhood}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {event.language} · {formatPrice(event.price)}
+            </p>
+          </div>
+        ) : null}
       </ScreenBody>
       <div className="shrink-0 space-y-2 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <Button className="h-12 w-full rounded-xl text-base" onClick={onDone}>
@@ -65,7 +67,7 @@ export function PublishSuccessScreen({
   isEdit,
   onViewMyEvents,
 }: {
-  event: EventItem;
+  event: EventItem | null;
   isEdit: boolean;
   onViewMyEvents: () => void;
 }) {
@@ -82,17 +84,19 @@ export function PublishSuccessScreen({
             : "Your event is now visible to travellers in Paris."}
         </p>
 
-        <div className="mt-7 w-full rounded-xl border border-border bg-card p-4 text-left shadow-card">
-          <p className="text-base font-semibold text-foreground">{event.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {formatDate(event.date)}
-            {event.time ? ` · ${event.time}` : ""}
-          </p>
-          <p className="mt-1 text-sm text-muted-foreground">{event.address}</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {event.language} · {formatPrice(event.price)}
-          </p>
-        </div>
+        {event ? (
+          <div className="mt-7 w-full rounded-xl border border-border bg-card p-4 text-left shadow-card">
+            <p className="text-base font-semibold text-foreground">{event.title}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {formatDate(event.date)}
+              {event.time ? ` · ${event.time}` : ""}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">{event.address}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {event.language} · {formatPrice(event.price)}
+            </p>
+          </div>
+        ) : null}
       </ScreenBody>
       <div className="shrink-0 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <Button className="h-12 w-full rounded-xl text-base" onClick={onViewMyEvents}>
