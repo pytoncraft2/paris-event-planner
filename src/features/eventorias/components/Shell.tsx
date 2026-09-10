@@ -1,3 +1,4 @@
+import { useRouterState } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -64,8 +65,15 @@ export function ScreenBody({
   children: ReactNode;
   className?: string;
 }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  // key={pathname}: each route gets a fresh scroll container, so a new screen
+  // always opens at the top (the scroll lives in this element, not on window).
   return (
-    <main className={cn("min-h-0 flex-1 overflow-x-hidden overflow-y-auto", className)}>
+    <main
+      key={pathname}
+      className={cn("min-h-0 flex-1 overflow-x-hidden overflow-y-auto", className)}
+    >
       {children}
     </main>
   );

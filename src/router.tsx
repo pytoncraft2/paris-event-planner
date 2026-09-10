@@ -8,7 +8,9 @@ export const getRouter = () => {
   const router = createRouter({
     routeTree,
     context: { queryClient },
-    scrollRestoration: true,
+    // Disabled: this app's scroll lives in an internal container (ScreenBody),
+    // and restoration made new screens open mid-scroll. ScreenBody remounts per
+    // route (key=pathname), so every screen starts at the top.
     defaultPreloadStaleTime: 0,
   });
 
