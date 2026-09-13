@@ -28,6 +28,7 @@ function ProfileRoute() {
       notifications={store.notifications}
       onNotificationsChange={store.setNotifications}
       onOpenMyEvents={() => void navigate({ to: "/my-events" })}
+      onCreate={() => void navigate({ to: "/my-events/create" })}
       myEventsCount={store.myEvents.length}
     />
   );

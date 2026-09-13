@@ -37,6 +37,9 @@ export function EventsScreen({
   return (
     <>
       <header className="shrink-0 border-b border-border bg-card px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
+        <div className="mb-1 flex items-center justify-between">
+          <span className="text-sm font-semibold tracking-tight text-primary">Eventorias</span>
+        </div>
         <p className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
           <MapPin className="size-4 shrink-0" aria-hidden />
           Paris, France
