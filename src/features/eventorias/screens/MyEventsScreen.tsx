@@ -119,8 +119,7 @@ export function MyEventsScreen({
           <AlertDialogHeader>
             <AlertDialogTitle>Cancel this event?</AlertDialogTitle>
             <AlertDialogDescription>
-              {pending?.title} will be removed from your published events. This cannot be
-              undone.
+              {pending?.title} will be removed from your published events. This cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

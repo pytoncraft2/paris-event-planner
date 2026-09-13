@@ -24,9 +24,7 @@ export function CalendarSuccessScreen({
     <>
       <ScreenBody className="flex flex-col items-center px-4 pt-16 pb-6 text-center">
         <SuccessMark />
-        <h1 className="mt-5 text-xl font-semibold text-foreground">
-          Added to your calendar
-        </h1>
+        <h1 className="mt-5 text-xl font-semibold text-foreground">Added to your calendar</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           You&apos;re all set. The event has been saved to your Eventorias calendar.
         </p>

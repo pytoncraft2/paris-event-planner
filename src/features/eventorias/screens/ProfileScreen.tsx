@@ -30,9 +30,7 @@ export function ProfileScreen({
             <UserRound className="size-6 text-accent-foreground" aria-hidden />
           </div>
           <div className="min-w-0">
-            <p className="truncate text-base font-semibold text-foreground">
-              {PROFILE.name}
-            </p>
+            <p className="truncate text-base font-semibold text-foreground">{PROFILE.name}</p>
             <p className="truncate text-sm text-muted-foreground">{PROFILE.email}</p>
             <span className="mt-1.5 inline-flex rounded-md bg-accent px-2 py-0.5 text-xs font-semibold text-accent-foreground">
               {PROFILE.role}
@@ -77,7 +75,6 @@ export function ProfileScreen({
             <Plus className="size-5 shrink-0 text-muted-foreground" aria-hidden />
           </button>
         </div>
-
       </ScreenBody>
     </>
   );
