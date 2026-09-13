@@ -32,7 +32,21 @@ export function MyEventsScreen({
 
   return (
     <>
-      <ScreenHeader title="My Events" subtitle="Published by you" onBack={onBack} />
+      <ScreenHeader
+        title="My Events"
+        subtitle="Published by you"
+        onBack={onBack}
+        action={
+          <button
+            type="button"
+            onClick={onCreate}
+            aria-label="Create event"
+            className="flex size-10 items-center justify-center rounded-xl text-primary hover:bg-primary-soft"
+          >
+            <Plus className="size-5" aria-hidden />
+          </button>
+        }
+      />
       <ScreenBody className="px-4 py-5 pb-6">
         {events.length === 0 ? (
           <EmptyState
@@ -105,8 +119,7 @@ export function MyEventsScreen({
           <AlertDialogHeader>
             <AlertDialogTitle>Cancel this event?</AlertDialogTitle>
             <AlertDialogDescription>
-              {pending?.title} will be removed from your published events. This cannot be
-              undone.
+              {pending?.title} will be removed from your published events. This cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

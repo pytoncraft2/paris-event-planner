@@ -24,11 +24,9 @@ export function CalendarSuccessScreen({
     <>
       <ScreenBody className="flex flex-col items-center px-4 pt-16 pb-6 text-center">
         <SuccessMark />
-        <h1 className="mt-5 text-xl font-semibold text-foreground">
-          Added to your calendar
-        </h1>
+        <h1 className="mt-5 text-xl font-semibold text-foreground">Added to your calendar</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          This event is now in your Eventorias calendar.
+          You&apos;re all set. The event has been saved to your Eventorias calendar.
         </p>
 
         {event ? (
@@ -46,16 +44,9 @@ export function CalendarSuccessScreen({
           </div>
         ) : null}
       </ScreenBody>
-      <div className="shrink-0 space-y-2 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        <Button className="h-12 w-full rounded-xl text-base" onClick={onDone}>
-          Done
-        </Button>
-        <Button
-          variant="ghost"
-          className="h-12 w-full rounded-xl text-base text-muted-foreground"
-          onClick={onBackToEvents}
-        >
-          Back to Events
+      <div className="shrink-0 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <Button className="h-12 w-full rounded-xl text-base" onClick={onBackToEvents}>
+          Back to events
         </Button>
       </div>
     </>
