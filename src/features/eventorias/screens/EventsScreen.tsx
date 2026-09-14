@@ -35,8 +35,13 @@ export function EventsScreen({
   onResetFilters,
 }: Props) {
   return (
-    <>
-      <header className="shrink-0 border-b border-border bg-card px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3">
+    <ScreenBody>
+      <div
+        aria-hidden
+        className="sticky top-0 z-20 h-[env(safe-area-inset-top,0px)] bg-card"
+      />
+
+      <div className="bg-card px-4 pt-[max(0px,calc(1rem-env(safe-area-inset-top,0px)))]">
         <div className="mb-1 flex items-center justify-between">
           <span className="text-sm font-semibold tracking-tight text-primary">Eventorias</span>
         </div>
@@ -47,8 +52,10 @@ export function EventsScreen({
         <h1 className="mt-1 text-2xl leading-tight font-semibold tracking-tight text-foreground">
           What&apos;s happening in Paris?
         </h1>
+      </div>
 
-        <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
+      <div className="sticky top-[env(safe-area-inset-top,0px)] z-10 border-b border-border bg-card px-4 py-2.5">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
           <div className="relative min-w-0">
             <Search
               className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
@@ -77,20 +84,20 @@ export function EventsScreen({
             ) : null}
           </button>
         </div>
+      </div>
 
-        <div className="no-scrollbar -mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-0.5">
-          {(["All", ...CATEGORIES] as const).map((c) => (
-            <Chip
-              key={c}
-              label={c}
-              selected={activeCategory === c}
-              onClick={() => onCategoryChange(c)}
-            />
-          ))}
-        </div>
-      </header>
+      <div className="no-scrollbar flex gap-2 overflow-x-auto px-4 pt-3 pb-0.5">
+        {(["All", ...CATEGORIES] as const).map((c) => (
+          <Chip
+            key={c}
+            label={c}
+            selected={activeCategory === c}
+            onClick={() => onCategoryChange(c)}
+          />
+        ))}
+      </div>
 
-      <ScreenBody className="px-4 pt-4 pb-6">
+      <div className="px-4 pt-4 pb-6">
         {demoMode === "loading" ? (
           <LoadingList />
         ) : demoMode === "error" ? (
@@ -111,7 +118,7 @@ export function EventsScreen({
             </ul>
           </>
         )}
-      </ScreenBody>
-    </>
+      </div>
+    </ScreenBody>
   );
 }

@@ -11,7 +11,7 @@ type FormFieldProps = {
 };
 
 const baseControl =
-  "w-full min-h-11 rounded-xl border bg-card px-3.5 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "min-w-0 w-full min-h-11 rounded-xl border bg-card px-3.5 py-2.5 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function FormField({ id, label, required, error, hint, children }: FormFieldProps) {
   const invalid = Boolean(error);

@@ -18,14 +18,21 @@ export function ScreenHeader({
   subtitle,
   onBack,
   action,
+  bottom,
 }: {
   title: string;
   subtitle?: string;
   onBack?: () => void;
   action?: ReactNode;
+  bottom?: ReactNode;
 }) {
   return (
-    <header className="shrink-0 border-b border-border bg-card px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3">
+    <header
+      className={cn(
+        "shrink-0 border-b border-border bg-card px-4 pt-[max(0.75rem,env(safe-area-inset-top))]",
+        bottom ? "pb-2.5" : "pb-3",
+      )}
+    >
       <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2">
         {onBack ? (
           <button
@@ -54,6 +61,7 @@ export function ScreenHeader({
         </div>
         <div className="flex shrink-0 items-center">{action}</div>
       </div>
+      {bottom}
     </header>
   );
 }
@@ -72,7 +80,7 @@ export function ScreenBody({
   return (
     <main
       key={pathname}
-      className={cn("min-h-0 flex-1 overflow-x-hidden overflow-y-auto", className)}
+      className={cn("min-h-0 flex-1 overflow-x-clip overflow-y-auto", className)}
     >
       {children}
     </main>
