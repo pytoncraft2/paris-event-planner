@@ -91,6 +91,11 @@ export function FiltersScreen({
         </Group>
 
         <Group title="Category">
+          <Chip
+            label="All"
+            selected={draft.categories.length === 0}
+            onClick={() => setDraft((d) => ({ ...d, categories: [] }))}
+          />
           {CATEGORIES.map((c) => (
             <Chip
               key={c}

@@ -9,7 +9,7 @@ type BottomNavProps = {
 };
 
 const TABS = [
-  { id: "events" as const, label: "Events", Icon: CalendarDays },
+  { id: "events" as const, label: "Explore", Icon: CalendarDays },
   { id: "profile" as const, label: "Profile", Icon: User },
 ];
 

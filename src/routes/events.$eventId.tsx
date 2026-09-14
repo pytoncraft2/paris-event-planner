@@ -49,10 +49,11 @@ function EventDetailsRoute() {
   return (
     <EventDetailsScreen
       event={event}
+      inCalendar={store.isInCalendar(event.id)}
       onBack={() => void navigate({ to: "/events" })}
       onAddToCalendar={() => {
         if (store.signedIn) {
-          store.setLastCalendarEvent(event);
+          store.addToCalendar(event);
           void navigate({ to: "/calendar/success" });
         } else {
           void navigate({

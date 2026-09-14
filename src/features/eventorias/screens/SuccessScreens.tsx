@@ -23,7 +23,9 @@ export function CalendarSuccessScreen({
   return (
     <>
       <ScreenBody className="flex flex-col items-center px-4 pt-16 pb-6 text-center">
-        <SuccessMark />
+        <div className="flex size-14 items-center justify-center rounded-full bg-primary/20">
+          <Check className="size-7 text-primary" aria-hidden />
+        </div>
         <h1 className="mt-5 text-xl font-semibold text-foreground">Added to your calendar</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           You&apos;re all set. The event has been saved to your Eventorias calendar.

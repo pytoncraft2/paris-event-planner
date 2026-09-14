@@ -46,7 +46,7 @@ function SignInRoute() {
         store.setSignedIn(true);
         const event = eventId ? store.findEvent(eventId) : undefined;
         if (event) {
-          store.setLastCalendarEvent(event);
+          store.addToCalendar(event);
           void navigate({ to: "/calendar/success" });
         } else {
           void navigate({ to: "/events" });
