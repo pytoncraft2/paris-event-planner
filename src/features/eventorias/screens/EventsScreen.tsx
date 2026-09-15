@@ -1,4 +1,4 @@
-import { MapPin, Search, SlidersHorizontal } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { EventCard } from "../components/EventCard";
 import { Chip } from "../components/Chip";
 import { EmptyState, ErrorState, LoadingList } from "../components/States";
@@ -41,18 +41,12 @@ export function EventsScreen({
         className="sticky top-0 z-20 h-[env(safe-area-inset-top,0px)] bg-card"
       />
 
-      <div className="bg-card px-4 pt-[max(0px,calc(1rem-env(safe-area-inset-top,0px)))]">
-        <div className="mb-1 flex items-center justify-between">
-          <span className="text-sm font-semibold tracking-tight text-primary">Eventorias</span>
-        </div>
-        <p className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-          <MapPin className="size-4 shrink-0" aria-hidden />
-          Paris, France
-        </p>
-        <h1 className="mt-1 text-2xl leading-tight font-semibold tracking-tight text-foreground">
+      <div className="bg-card px-4 pt-[max(0px,calc(1rem-env(safe-area-inset-top,0px)))] pb-3">
+        <h1 className="text-2xl leading-tight font-semibold tracking-tight text-foreground">
           What&apos;s happening in Paris?
         </h1>
       </div>
+
 
       <div className="sticky top-[env(safe-area-inset-top,0px)] z-10 border-b border-border bg-card px-4 py-2.5">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">

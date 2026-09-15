@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BottomNav, type Tab } from "../features/eventorias/components/BottomNav";
 import { MobileShell } from "../features/eventorias/components/Shell";
+import { SplashScreen } from "../features/eventorias/components/SplashScreen";
 import { EventoriasProvider } from "../features/eventorias/store";
 
 function NotFoundComponent() {
@@ -170,6 +171,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <EventoriasProvider>
         <MobileShell>
+          <SplashScreen />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           {showNav && <BottomNav active={activeTab} onChange={(tab) => void navigate({ to: tab === "events" ? "/events" : "/profile" })} />}

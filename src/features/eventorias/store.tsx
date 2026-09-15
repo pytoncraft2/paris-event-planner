@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
 import { ORGANIZER_SEED_EVENTS, SEED_EVENTS } from "./data";
+import { clearSplashSeen } from "./splash";
 import { EMPTY_FILTERS, type Category, type EventItem, type Filters } from "./types";
 
 /** Demo "today" so relative date filters line up with the simulated data. */
@@ -179,6 +180,7 @@ export function EventoriasProvider({ children }: { children: ReactNode }) {
       setLastCalendarEvent(null);
       writeCalendarEventIds([]);
       setLastPublish(null);
+      clearSplashSeen();
     },
     lastCalendarEvent,
     setLastCalendarEvent,

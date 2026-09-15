@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export function MobileShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-[100dvh] w-full justify-center overflow-hidden">
-      <div className="flex h-full w-full max-w-[430px] flex-col overflow-hidden border-border bg-background sm:border-x">
+      <div className="relative flex h-full w-full max-w-[430px] flex-col overflow-hidden border-border bg-background sm:border-x">
         {children}
       </div>
     </div>
